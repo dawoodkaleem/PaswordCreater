@@ -1,12 +1,14 @@
 // import './App.css'
 
-import { useState, useCallback , useEffect} from "react";
+import { useState, useCallback , useEffect, useRef} from "react";
 
 function App() {
   const [length, setLenght] = useState(8);
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
+  // UseRef hook
+const passwordRef = useRef("")
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -26,6 +28,11 @@ function App() {
     setPassword(pass);
   }, [length,numberAllowed,charAllowed,setPassword]);
 
+  const copyPasswordToClipboard=useCallback(()=>{
+    passwordRef.current?.select();
+    passwordRef.current?.setSelectionRange(0,99)
+    window.navigator.clipboard.writeText(password);
+  },[password])
   useEffect (()=>{
 passwordGenerator();
   },[length,numberAllowed,charAllowed,passwordGenerator])
@@ -41,9 +48,10 @@ passwordGenerator();
             className="outline-none w-full py-1 px-3"
             placeholder="Password"
             readOnly
+            ref={passwordRef}
           />
 
-          <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+          <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0" onClick={copyPasswordToClipboard}>
             copy
           </button>
         </div>
@@ -57,6 +65,7 @@ passwordGenerator();
               className="cursor-pointer"
               onChange={(e) => {
                 setLenght(e.target.value);
+
               }}
             />
             <label>Length:{length}</label>
