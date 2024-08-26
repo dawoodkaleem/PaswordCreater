@@ -12,7 +12,9 @@ const passwordRef = useRef("")
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let str = ;
+
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numberAllowed) 
       str += "0123456789";
     
@@ -22,7 +24,7 @@ const passwordRef = useRef("")
     for (let i = 0; i < length; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
       pass += str.charAt(char);
-      // console.log(char,"in for loop")
+      console.log(char,"in for loop")
     }
    
     setPassword(pass);
