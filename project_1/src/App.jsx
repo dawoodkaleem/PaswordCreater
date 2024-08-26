@@ -12,7 +12,7 @@ const passwordRef = useRef("")
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
-    let str = ;
+    let str = 
 
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numberAllowed) 
